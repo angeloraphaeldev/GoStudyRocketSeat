@@ -10,43 +10,42 @@ import (
 )
 
 func main() {
-	fmt.Println("Welcome to Guessing Game!! 😎")
+	fmt.Println("Welcome to the Guessing Game!! 😎")
 	fmt.Println(
 		"\n ⚠️  A Random number will be choose. Try hit. The number is between 0 and 100")
 
 	x := rand.Int64N(101)
 
 	scanner := bufio.NewScanner(os.Stdin)
-	hits := [10]int64{}
+	guesses := [10]int64{}
 
-	for i := range hits {
-		fmt.Println("\nWhat your guess? 👀")
+	for i := range guesses {
+		fmt.Println("\nWhat's your guess? 👀")
 		scanner.Scan()
-		hit := scanner.Text()
-		hit = strings.TrimSpace(hit)
+		guess := scanner.Text()
+		guess = strings.TrimSpace(guess)
 
-		hitInt, err := strconv.ParseInt(hit, 10, 64)
+		guessInt, err := strconv.ParseInt(guess, 10, 64)
 		if err != nil {
-			fmt.Println("Use a integer number")
-			return
+			fmt.Println("Please enter a valid integer number")
+			continue
 		}
 
-		switch {
-		case hitInt < x:
-			fmt.Println("🚫 Wrong Hit, X is higher than ", hitInt)
-		case hitInt > x:
-			fmt.Println("🚫 Wrong Hit, X is lower than ", hitInt)
-		case hitInt == x:
-			fmt.Printf(" 🎉🎉🎉 CONGRATULATIONS! You are RIGHT! The number was %d\n"+
-				"You hit in %d tries.\n"+
-				"That was yours hits: %v\n",
-				x, i+1, hits[:i], //Catch all array values until i index
+		if guessInt < x {
+			fmt.Println("🚫 Incorrect guess, the number is higher than ", guessInt)
+		} else if guessInt > x {
+			fmt.Println("🚫 Incorrect guess, the number is lower than ", guessInt)
+		} else {
+			fmt.Printf(" 🎉🎉🎉 CONGRATULATIONS! You guessed it RIGHT! The number was %d\n"+
+				"You hit in %d attempts.\n"+
+				"That was your guesses: %v\n",
+				x, i+1, guesses[:i],
 			)
 			return
 		}
 
-		hits[i] = hitInt
+		guesses[i] = guessInt
 	}
-	fmt.Printf("\n😥 OH nooooo, you dont guess the number. The number was %d\n"+
-		"Nice try, you should try again. That was your guesses%v\n", x, hits)
+	fmt.Printf("\n😥 OH NO, you didnt guess the number. The number was %d\n"+
+		"Good try, you should try again. Your guesses where: %v\n", x, guesses)
 }
