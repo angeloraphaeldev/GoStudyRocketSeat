@@ -15,11 +15,27 @@ func main() {
 
 	//foo.Foo
 	fmt.Println("------------------------------ FUNCTION --------------------------------")
-	fmt.Println(fS.Somar(1, 2))
+	fmt.Println(fS.SumMath(1, 2))
 	c, d := fS.Swap(10, 20)
 	fmt.Println(c, d)
 
-	res, rem := fS.Dividir(10, 3)
+	res, rem := fS.DivisionMath(10, 3)
 	fmt.Println(res, rem)
+
+	fS.Arrays()
+
+	fS.Loops()
+
+	fS.Range()
+
+	fS.Loops()
+
+	fS.NewLoopUpdated()
+
+	fS.ArrayPointer() // Memory Allocation of Pointer.
+
+	fS.Condition()
+
+	fS.Dodefer() // Defer test
 
 }
