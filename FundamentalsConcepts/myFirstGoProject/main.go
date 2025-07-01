@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	aC "myFirstGoProject/concepts"
 	fS "myFirstGoProject/firstSteps"
 	"myFirstGoProject/packageTest"
 	//"myFirstGoProject/packageTest/internal/foo" -------- Internal Package can't be imported on main file.
@@ -37,5 +38,9 @@ func main() {
 	fS.Condition()
 
 	fS.Dodefer() // Defer test
+
+	aC.ArraySlices()
+
+	aC.Pointers()
 
 }
